@@ -1,38 +1,26 @@
-import { Entity, Column } from "typeorm";
-
-import { BaseModel } from "./BaseModel";
+import { Entity, BaseEntity, Column, CreateDateColumn, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 
 @Entity("user")
-export class User extends BaseModel {
-  @Column({
-    unique: true,
-    length: 10,
-    name: "national_identification_num"
-  })
-  nin: string;
+export class User extends BaseEntity {
+  @PrimaryGeneratedColumn()
+  id: number;
 
   @Column({
-    type: "numeric"
+    unique: true
   })
-  income: number;
+  username: string;
 
   @Column({
-    default: false
+    unique: true
   })
-  isVaccinated: boolean;
+  email: string;
 
-  @Column({
-    type: "simple-json",
-    nullable: true
-  })
-  addtional_info: {
-    age: number;
-    address: string;
-  };
+  @Column()
+  password: string;
 
-  @Column({
-    type: "simple-array",
-    default: []
-  })
-  certifications: string[];
+  @CreateDateColumn()
+  created_at: Date;
+
+  @UpdateDateColumn()
+  updated_at: Date;
 }

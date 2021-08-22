@@ -1,10 +1,10 @@
+// eslint-disable-next-line node/no-extraneous-import
+import "reflect-metadata";
+
 import dotenv from "dotenv";
 import morgan from "morgan";
 import cors from "cors";
 import express from "express";
-
-// eslint-disable-next-line node/no-extraneous-import
-import "reflect-metadata";
 
 import pg from "pg";
 import { createConnection } from "typeorm";

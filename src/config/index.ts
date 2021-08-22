@@ -2,6 +2,7 @@ import * as dotenv from "dotenv";
 import { createConnection, ConnectionOptions } from "typeorm";
 
 import { User } from "../models/User";
+import { Post } from "../models/Post";
 
 dotenv.config(); // read key-value pairs from .env
 
@@ -20,11 +21,12 @@ const makeCXNtoDB = async () => {
       type: "postgres",
       host: process.env.DB_HOST || "localhost",
       port: Number(process.env.DB_PORT) || 5432,
-      username: process.env.DB_USERNAME ?? "killme",
-      password: process.env.DB_PASSWORD ?? "test123",
-      database: "typeorm_test_2_xoa",
-      entities: [User],
-      synchronize: true
+      username: process.env.DB_USERNAME ?? "postgres",
+      password: process.env.DB_PASSWORD,
+      database: process.env.DB_NAME,
+      entities: [User, Post],
+      synchronize: true,
+      logging: true
     };
 
     try {
